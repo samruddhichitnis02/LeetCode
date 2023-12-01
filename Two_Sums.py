@@ -36,10 +36,17 @@ class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         val = []
         for i in range(len(nums)):
-            rem = target - nums[i]
+            if target >= 0:
+                rem = target - nums[i]
 
-            if (rem in nums) and (nums.index(rem) != i) and (rem > 0) and (nums.index(rem) not in val) and (i not in val):
-                val.append(nums.index(rem))
-                val.append(i)
+                if (rem in nums) and (nums.index(rem) != i) and (rem >= 0) and (nums.index(rem) not in val) and (i not in val):
+                    val.append(nums.index(rem))
+                    val.append(i)
+            
+            elif target < 0:
+                rem = target - nums[i]
+                if (rem in nums) and (nums.index(rem) != i) and (nums.index(rem) not in val) and (i not in val):
+                    val.append(nums.index(rem))
+                    val.append(i)
         
         return sorted(val)
